@@ -13,7 +13,7 @@ class SketchPad{
 
         this.path=[];
         this.isDrawing=false;
-
+        this.refreshButton = document.getElementsByClassName("img-size")[0];
         this.#addEventListeners();
     }
 
@@ -37,6 +37,14 @@ class SketchPad{
                 this.path.push(mouse);
                 console.log(this.path.length);
             }
+        }
+        this.canvas.onmouseup=()=>{
+            this.isDrawing=false;
+        }
+        this.refreshButton.onclick=()=>{
+            this.ctx.clearRect(0, 0,
+                this.canvas.width, this.canvas.height);
+            console.log(this.refreshButton);
         }
     }
 
