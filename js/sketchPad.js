@@ -9,6 +9,22 @@ class SketchPad{
         `;
         container.appendChild(this.canvas);
 
-        // this.ctx=this.canvas.getContext("2d");
+        this.ctx=this.canvas.getContext("2d");
+
+        this.#addEventListeners();
     }
+
+    #addEventListeners(){
+        this.canvas.onmousedown=(evt)=>{
+            const rect = this.canvas.getBoundingClientRect();
+            const mouse = [
+                evt.clientX-rect.left,
+                evt.clientY-rect.top
+            ];
+            console.log(mouse)
+        }
+    }
+
+
+
 }
