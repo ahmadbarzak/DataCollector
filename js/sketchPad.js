@@ -11,31 +11,22 @@ class SketchPad{
 
         this.ctx=this.canvas.getContext("2d");
 
-        this.path=[];
-        this.isDrawing=false;
         this.refreshButton = document.getElementsByClassName("img-size")[0];
         this.#addEventListeners();
     }
 
     #addEventListeners(){
         this.canvas.onmousedown=(evt)=>{
-            const rect = this.canvas.getBoundingClientRect();
-            const mouse = [
-                evt.clientX-rect.left,
-                evt.clientY-rect.top
-            ];
+            const mouse = this.#getMouse(evt);
+            this.path=[mouse];
             this.isDrawing=true;
             console.log(mouse);
         }
         this.canvas.onmousemove=(evt)=>{
             if(this.isDrawing){
-                const rect = this.canvas.getBoundingClientRect();
-                const mouse = [
-                    evt.clientX-rect.left,
-                    evt.clientY-rect.top
-                ];
+                const mouse = this.#getMouse(evt);
                 this.path.push(mouse);
-                console.log(this.path.length);
+                this.#redraw();
             }
         }
         this.canvas.onmouseup=()=>{
@@ -44,8 +35,17 @@ class SketchPad{
         this.refreshButton.onclick=()=>{
             this.ctx.clearRect(0, 0,
                 this.canvas.width, this.canvas.height);
-            console.log(this.refreshButton);
         }
+    }
+    #redraw(){
+        draw.path(this.ctx, this.path);
+    }
+    #getMouse=(evt)=>{
+        const rect=this.canvas.getBoundingClientRect();
+            return [
+                Math.round(evt.clientX-rect.left),
+                Math.round(evt.clientY-rect.top)
+            ];
     }
 
 }
