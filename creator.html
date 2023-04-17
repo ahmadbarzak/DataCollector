@@ -9,7 +9,16 @@
             <h1>Data Creator</h1>
             <br>
             <div id="sketchPadContainer"></div>
-            <div id="refresh"></div>
+            <div id="refresh">
+                <button class="img-size">
+                    <img src="img/bin.png"/>
+                </button>
+            </div>
         </div>
+        <script src="js/sketchPad.js"></script>
+        <script>
+            const sketchPad=
+                new SketchPad(sketchPadContainer, refresh); 
+        </script>
     </body>
 </html>
