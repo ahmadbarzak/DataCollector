@@ -30,3 +30,36 @@ body{
     width:30px;
     height:30px;
 }
+
+#submit img{
+    width:60px;
+    height:60px;
+}
+
+#submit {
+    background-image: linear-gradient(to bottom right, blue, pink);
+}
+#submit:hover{
+    background-image: linear-gradient(to bottom right, pink, blue);
+}
+
+#refresh{
+    background-image: linear-gradient(to top right, #E47780, #1293CE);
+}
+#refresh:hover{
+    background-image: linear-gradient(to top right, #1293CE, #E47780);
+}
+
+#undo{
+    background-image: linear-gradient(to bottom right, #FFE95C, #598588);
+}
+#undo:hover{
+    background-image: linear-gradient(to bottom right, #598588, #FFE95C);
+}
+
+#randColour{
+    background-image: linear-gradient(30deg, #C6D2ED, #6A3483);
+}
+#randColour:hover{
+    background-image: linear-gradient(120deg, #6A3483, #C6D2ED);
+}
