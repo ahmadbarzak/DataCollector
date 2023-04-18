@@ -29,8 +29,16 @@ class SketchPad{
         this.changeColor = document.getElementById("randColour");
         this.default = document.getElementById("default");
         
-        this.paths=[];
+        this.reset();
+
         this.#addEventListeners();
+    }
+
+
+    reset(){
+        this.paths=[];
+        this.isDrawing=false;
+        this.#redraw();
     }
 
     #addEventListeners(){

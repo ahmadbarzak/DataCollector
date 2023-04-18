@@ -36,6 +36,11 @@ body{
     height:60px;
 }
 
+#saveBtn img{
+    width:60px;
+    height:60px;
+}
+
 #submit {
     background-image: linear-gradient(to bottom right, blue, pink);
 }
@@ -62,4 +67,16 @@ body{
 }
 #randColour:hover{
     background-image: linear-gradient(120deg, #6A3483, #C6D2ED);
+}
+#start{
+    background-image: linear-gradient(to right, lightblue, pink);
+}
+#start:hover{
+    background-image: linear-gradient(to right, pink, lightblue);
+}
+#saveBtn {
+    background-image: linear-gradient(to bottom right, blue, pink);
+}
+#saveBtn:hover{
+    background-image: linear-gradient(to bottom right, pink, blue);
 }
