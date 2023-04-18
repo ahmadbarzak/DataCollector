@@ -12,32 +12,40 @@ class SketchPad{
 
         this.ctx=this.canvas.getContext("2d");
 
-        this.refreshButton = document.getElementsByClassName("img-size")[0];
-        this.changeColor = document.getElementsByClassName("img-size")[1];
+        this.refresh = document.getElementById("refresh");
+        this.undo = document.getElementById("undo");
+        this.changeColor = document.getElementById("randColour");
         this.default = document.getElementById("default");
+        
+        this.paths=[];
         this.#addEventListeners();
     }
 
     #addEventListeners(){
         this.canvas.onmousedown=(evt)=>{
             const mouse = this.#getMouse(evt);
-            this.path=[mouse];
+            this.paths.push([this.color, [mouse]]);
             this.isDrawing=true;
-            console.log(mouse);
         }
         this.canvas.onmousemove=(evt)=>{
             if(this.isDrawing){
                 const mouse = this.#getMouse(evt);
-                this.path.push(mouse);
+                const lastPath = this.paths[this.paths.length-1];
+                lastPath[1].push(mouse);
                 this.#redraw();
             }
         }
         this.canvas.onmouseup=()=>{
             this.isDrawing=false;
         }
-        this.refreshButton.onclick=()=>{
+        this.refresh.onclick=()=>{
+            this.paths=[];
             this.ctx.clearRect(0, 0,
                 this.canvas.width, this.canvas.height);
+        }
+        this.undo.onclick=()=>{
+            this.paths.pop();
+            this.#redraw();
         }
         this.changeColor.onclick=()=>{
             this.color="#" + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
@@ -49,7 +57,9 @@ class SketchPad{
         }
     }
     #redraw(){
-        draw.path(this.ctx, this.path, this.color);
+        this.ctx.clearRect(0, 0,
+            this.canvas.width, this.canvas.height);
+        draw.paths(this.ctx, this.paths);
     }
     #getMouse=(evt)=>{
         const rect=this.canvas.getBoundingClientRect();
