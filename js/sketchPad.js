@@ -3,6 +3,7 @@ class SketchPad{
         this.canvas=document.createElement("canvas");
         this.canvas.width=size;
         this.canvas.height=size;
+        this.color="black"
         this.canvas.style=`
             background-color:white;
             box-shadow: 0px 0px 10px 2px black;
@@ -12,6 +13,8 @@ class SketchPad{
         this.ctx=this.canvas.getContext("2d");
 
         this.refreshButton = document.getElementsByClassName("img-size")[0];
+        this.changeColor = document.getElementsByClassName("img-size")[1];
+        this.default = document.getElementById("default");
         this.#addEventListeners();
     }
 
@@ -36,9 +39,17 @@ class SketchPad{
             this.ctx.clearRect(0, 0,
                 this.canvas.width, this.canvas.height);
         }
+        this.changeColor.onclick=()=>{
+            this.color="#" + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
+            this.changeColor.style.border = "3px solid " + this.color;
+        }
+        this.default.onclick=()=>{
+            this.color="black"
+            this.changeColor.style.border = "3px solid " + this.color;
+        }
     }
     #redraw(){
-        draw.path(this.ctx, this.path);
+        draw.path(this.ctx, this.path, this.color);
     }
     #getMouse=(evt)=>{
         const rect=this.canvas.getBoundingClientRect();

@@ -11,8 +11,19 @@ body{
     text-align: center;
 }
 
-#refresh{
+#buttons{
     text-align: left;
+}
+
+.img-size{
+    border: 3px solid black;
+}
+
+#default{
+    transform: translate(0%, 10%);
+    width:40px;
+    height:41px;
+    background-color: black;
 }
 
 .img-size img{
