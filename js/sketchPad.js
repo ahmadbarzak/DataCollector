@@ -20,7 +20,7 @@ class SketchPad{
             buttons.append(currentButton);
             currentButton.onclick=()=>{
                 this.color=colour
-                this.changeColor.style.border = "3px solid " + this.color;
+                this.changeColor.style.border = "4px solid " + this.color;
             }
         }
 
@@ -61,7 +61,7 @@ class SketchPad{
         }
         this.changeColor.onclick=()=>{
             this.color="#" + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
-            this.changeColor.style.border = "3px solid " + this.color;
+            this.changeColor.style.border = "4px solid " + this.color;
         }
 
         // Mobile integration
@@ -77,6 +77,7 @@ class SketchPad{
             this.canvas.onmouseup();
         }
     }
+
     #redraw(){
         this.ctx.clearRect(0, 0,
             this.canvas.width, this.canvas.height);
