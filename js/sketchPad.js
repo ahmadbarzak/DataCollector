@@ -1,5 +1,5 @@
 class SketchPad{
-    constructor(container, size=400){
+    constructor(container, buttons, size=400){
         this.canvas=document.createElement("canvas");
         this.canvas.width=size;
         this.canvas.height=size;
@@ -11,6 +11,18 @@ class SketchPad{
         container.appendChild(this.canvas);
 
         this.ctx=this.canvas.getContext("2d");
+
+        const colours = ["black", "red", "orange", "green", "blue", "purple"];
+        for (const colour of colours){
+            const currentButton =document.createElement("button");
+            currentButton.className = "colours";
+            currentButton.style.backgroundColor=colour;
+            buttons.append(currentButton);
+            currentButton.onclick=()=>{
+                this.color=colour
+                this.changeColor.style.border = "3px solid " + this.color;
+            }
+        }
 
         this.refresh = document.getElementById("refresh");
         this.undo = document.getElementById("undo");
@@ -51,9 +63,18 @@ class SketchPad{
             this.color="#" + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
             this.changeColor.style.border = "3px solid " + this.color;
         }
-        this.default.onclick=()=>{
-            this.color="black"
-            this.changeColor.style.border = "3px solid " + this.color;
+
+        // Mobile integration
+        this.canvas.ontouchstart=(evt)=>{
+            const loc=evt.touches[0];
+            this.canvas.onmousedown(loc);
+        }
+        this.canvas.ontouchmove=(evt)=>{
+            const loc = evt.touches[0];
+            this.canvas.onmousemove(loc);
+        }
+        this.canvas.ontouchend=()=>{
+            this.canvas.onmouseup();
         }
     }
     #redraw(){
