@@ -55,7 +55,7 @@ class SketchPad{
                 this.#redraw();
             }
         }
-        this.canvas.onmouseup=()=>{
+        document.onmouseup=()=>{
             this.isDrawing=false;
         }
         this.refresh.onclick=()=>{
@@ -81,8 +81,8 @@ class SketchPad{
             const loc = evt.touches[0];
             this.canvas.onmousemove(loc);
         }
-        this.canvas.ontouchend=()=>{
-            this.canvas.onmouseup();
+        document.ontouchend=()=>{
+            document.onmouseup();
         }
     }
 
