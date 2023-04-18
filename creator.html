@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width,
+            maximum-scale=0.9, user-scalable=0">
         <title>Data Creator</title>
         <link rel="stylesheet" href="styles.css"/>
     </head>
@@ -13,20 +15,19 @@
                 <button class="img-size" id="refresh">
                     <img src="img/bin.png"/>
                 </button>
-                <button class="img-size" id="randColour">
-                    <img src="img/paint.png"/>
-                </button>
                 <button class="img-size" id="undo">
                     <img src="img/undo.png"/>
                 </button>
-                <button id="default"></button>
+                <button class="img-size" id="randColour">
+                    <img src="img/paint.png"/>
+                </button>
             </div>
         </div>
         <script src="js/sketchPad.js"></script>
         <script src="js/draw.js"></script>
         <script>
             const sketchPad=
-                new SketchPad(sketchPadContainer); 
+                new SketchPad(sketchPadContainer, buttons); 
         </script>
     </body>
 </html>
